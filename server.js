@@ -21,3 +21,6 @@ server.delete('/events/:id', cancelEvent)
 //----- Assistance ----
 server.get('/assistance/:id', getAssistance)
 server.put('/assistance/:id', changeAssistance)
+
+//----- Participants ----
+server.post('/participants', newParticipant)
