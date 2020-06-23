@@ -1,18 +1,19 @@
-CREATE TABLE eventos(
+CREATE TABLE events(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	fecha DATE NOT NULL,
-	hora_inicio TIME NOT NULL,
-	hora_finalizacion TIME,
+	event_date DATE NOT NULL,
+	start_time TIME NOT NULL,
+	end_time TIME,
+    active boolean NOT NULL DEFAULT 0
 );
-CREATE TABLE participantes(
+CREATE TABLE participants(
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	nombre_completo VARCHAR(30) NOT NULL,
-    mail VARCHAR(30) NOT NULL,
-    descripcion VARCHAR(200)
+	complete_name VARCHAR(30) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    participant_desc VARCHAR(200)
 );
-CREATE TABLE asistentes(
+CREATE TABLE assistants(
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_participante INT NOT NULL,
-    id_evento INT NOT NULL,
-    asistencia ENUM('sin respuesta','voy','no voy') DEFAULT 'sin respuesta'
+    id_participant INT NOT NULL,
+    id_event INT NOT NULL,
+    assistance ENUM('sin respuesta','voy','no voy') DEFAULT 'sin respuesta' NOT NULL
 );
