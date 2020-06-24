@@ -23,19 +23,19 @@ module.exports ={
             }
     },
     newEvent: async (req, res) =>{
-        const event = await DataBase.query('INSERT INTO events (event_date, start_time, end_time, active) VALUES (:event_date, :start_time, :end_time, :active)',{
+        const event = await DataBase.query('INSERT INTO events (event_date, start_time, end_time) VALUES (:event_date, :start_time, :end_time)',{
                 replacements: req.body
             })
         const selectEvent = await DataBase.query(`SELECT MAX(id) FROM events`, { type: Sequelize.QueryTypes.SELECT })
         const eventId = Object.values(selectEvent[0].valueOf('MAX(id)'))
-        req.body.participants.forEach(item => {
-                DataBase.query(`INSERT INTO assistance (id_participant, id_event) VALUES (${item.id_participant},${eventId}})`)
+        req.body.participants.forEach(async (item) => {
+            const participants = await DataBase.query(`INSERT INTO assistants(id_participant, id_event) VALUES (${item.id_participant},${eventId})`)
         })
         if(!selectEvent){
             return res.status(400).json('Invalid Data');
         }else { 
             res.status(200).json('Event created.')
-        } */
+        }
     },
     getEvent: async (req,res) =>{
         const id = req.params.id
