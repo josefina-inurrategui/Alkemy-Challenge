@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const dbConf = require('../Database/databaseConf.js');        
-const { json } = require('body-parser');
 const DataBase = new Sequelize(`${dbConf.dialect}://${dbConf.user}:${dbConf.password}@${dbConf.host}:${dbConf.port}/${dbConf.db_name}`);
 
 module.exports ={
