@@ -1,7 +1,7 @@
 const server = require('express')();
 const bodyParserJson = require('body-parser').json();
 
-const {newEvent, weekEvents, monthEvents} = require('./events/event.js')
+const {newEvent, weekEvents, monthEvents, getEvent, noActiveEvents, modifyEvent, cancelEvent} = require('./events/event.js')
 
 server.listen(3000,()=> console.log('servidor iniciado...'))
 server.use(bodyParserJson)
@@ -14,12 +14,12 @@ server.use(function(err, req, res, next) {
 //----- Events ----
 server.get('/events/week/:week', weekEvents)
 server.get('/events/month/:month', monthEvents)
-/* server.get('/events/:id', getEvent)
-server.get('/events', noActiveEvents) */
+server.get('/event/:id', getEvent)
+server.get('/events/cancelled', noActiveEvents)
 server.post('/events', newEvent)
-/* server.put('/events/:id', modifyEvent)
-server.delete('/events/:id', cancelEvent)
-
+server.put('/event/:id', modifyEvent)
+server.delete('/event/cancel/:id', cancelEvent)
+/* 
 //----- Assistance ----
 server.get('/assistance/:id', getAssistance)
 server.put('/assistance/:id', changeAssistance)

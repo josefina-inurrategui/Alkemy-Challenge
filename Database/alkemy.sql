@@ -3,7 +3,7 @@ CREATE TABLE events(
 	event_date DATE NOT NULL,
 	start_time TIME NOT NULL,
 	end_time TIME,
-    active boolean NOT NULL DEFAULT 0
+    active boolean NOT NULL DEFAULT 1
 );
 CREATE TABLE participants(
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
