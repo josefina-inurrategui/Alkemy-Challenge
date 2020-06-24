@@ -26,15 +26,15 @@ module.exports ={
         const event = await DataBase.query('INSERT INTO events (event_date, start_time, end_time, active) VALUES (:event_date, :start_time, :end_time, :active)',{
                 replacements: req.body
             })
-/*         const orderOK = await DataBase.query(`SELECT MAX(id) FROM pedidos WHERE id_cliente = ${id_cliente}`, { type: sequelize.QueryTypes.SELECT })
-        const orderId = Object.values(orderOK[0].valueOf('MAX(id)'))
-        req.body.items.forEach(item => {
-                DataBase.query(`INSERT INTO producto_pedido (cantidad, id_producto, id_pedido) VALUES (${item.cantidad},${item.idProducto},${orderId})`)
+        const selectEvent = await DataBase.query(`SELECT MAX(id) FROM events`, { type: Sequelize.QueryTypes.SELECT })
+        const eventId = Object.values(selectEvent[0].valueOf('MAX(id)'))
+        req.body.participants.forEach(item => {
+                DataBase.query(`INSERT INTO assistance (id_participant, id_event) VALUES (${item.id_participant},${eventId}})`)
         })
-        if(!orderOk){
-            return res.status(400).json('Datos ingresados incorrectos');
+        if(!selectEvent){
+            return res.status(400).json('Invalid Data');
         }else { 
-            res.status(200).json('Pedido Realizado')
+            res.status(200).json('Event created.')
         } */
     },
     getEvent: async (req,res) =>{
