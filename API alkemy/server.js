@@ -20,10 +20,10 @@ server.get('/events/cancelled', noActiveEvents)
 server.post('/events', newEvent)
 server.put('/event/:id', modifyEvent)
 server.delete('/event/cancel/:id', cancelEvent)
-
-/*//----- Assistance ----
+/* 
+//----- Assistance ----
 server.get('/assistance/:id', getAssistance)
- server.put('/assistance/:id', changeAssistance)
-*/
+server.put('/assistance/:id', changeAssistance)
+ */
 //----- Participants ----
 server.post('/participants', newParticipant) 

@@ -22,12 +22,20 @@ module.exports ={
                 res.status(200).json(monthEvents)
             }
     },
-    newEvent: (req, res) =>{
-        DataBase.query(
-            'INSERT INTO events (event_date, start_time, end_time, active) VALUES (:event_date, :start_time, :end_time, :active)',{
+    newEvent: async (req, res) =>{
+        const event = await DataBase.query('INSERT INTO events (event_date, start_time, end_time, active) VALUES (:event_date, :start_time, :end_time, :active)',{
                 replacements: req.body
-            }).then(result => console.log(result) || res.status(200).json('New event created'))
-              .catch(error => console.log(error) || res.status(400).send('Invalid data'))
+            })
+/*         const orderOK = await DataBase.query(`SELECT MAX(id) FROM pedidos WHERE id_cliente = ${id_cliente}`, { type: sequelize.QueryTypes.SELECT })
+        const orderId = Object.values(orderOK[0].valueOf('MAX(id)'))
+        req.body.items.forEach(item => {
+                DataBase.query(`INSERT INTO producto_pedido (cantidad, id_producto, id_pedido) VALUES (${item.cantidad},${item.idProducto},${orderId})`)
+        })
+        if(!orderOk){
+            return res.status(400).json('Datos ingresados incorrectos');
+        }else { 
+            res.status(200).json('Pedido Realizado')
+        } */
     },
     getEvent: async (req,res) =>{
         const id = req.params.id
