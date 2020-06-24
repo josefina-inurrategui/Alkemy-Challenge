@@ -10,5 +10,4 @@ module.exports ={
             }).then(result => console.log(result) || res.status(200).json('New participant created'))
               .catch(error => console.log(error) || res.status(400).send('Invalid data'))
     }
-
 }
