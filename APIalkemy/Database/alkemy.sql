@@ -7,7 +7,7 @@ CREATE TABLE events(
 );
 CREATE TABLE participants(
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	complete_name VARCHAR(30) NOT NULL,
+	fullname VARCHAR(30) NOT NULL,
     email VARCHAR(30) NOT NULL,
     participant_desc VARCHAR(200)
 );
